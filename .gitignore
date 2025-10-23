@@ -1,0 +1,4 @@
+node_modules
+.vite/
+npm_output.log
+jules-scratch/
