@@ -1,6 +1,6 @@
-import React, { useState, memo } from 'react';
+import React, { useState } from 'react';
 
-const HabitTracker = memo(() => {
+const HabitTracker = () => {
   const [habits, setHabits] = useState([]);
   const [inputValue, setInputValue] = useState('');
 
@@ -44,6 +44,6 @@ const HabitTracker = memo(() => {
       </ul>
     </div>
   );
-});
+};
 
 export default HabitTracker;
