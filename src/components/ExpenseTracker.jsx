@@ -6,8 +6,9 @@ const ExpenseTracker = memo(() => {
   const [amount, setAmount] = useState('');
 
   const handleAddExpense = () => {
-    if (description.trim() && amount.trim()) {
-      setExpenses([...expenses, { description, amount: parseFloat(amount) }]);
+    const parsedAmount = parseFloat(amount);
+    if (description.trim() && amount.trim() && !isNaN(parsedAmount)) {
+      setExpenses([...expenses, { description, amount: parsedAmount }]);
       setDescription('');
       setAmount('');
     }
