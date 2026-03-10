@@ -1,6 +1,6 @@
-import React, { useState, memo } from 'react';
+import React, { useState } from 'react';
 
-const Login = memo(({ onLogin }) => {
+const Login = ({ onLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -36,6 +36,6 @@ const Login = memo(({ onLogin }) => {
       </form>
     </div>
   );
-});
+};
 
 export default Login;
