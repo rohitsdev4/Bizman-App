@@ -1,6 +1,6 @@
-import React, { useState, memo } from 'react';
+import React, { useState } from 'react';
 
-const ExpenseTracker = memo(() => {
+const ExpenseTracker = () => {
   const [expenses, setExpenses] = useState([]);
   const [description, setDescription] = useState('');
   const [amount, setAmount] = useState('');
@@ -45,6 +45,6 @@ const ExpenseTracker = memo(() => {
       </ul>
     </div>
   );
-});
+};
 
 export default ExpenseTracker;
