@@ -6,15 +6,15 @@ const TodoList = () => {
 
   const handleAddTodo = () => {
     if (inputValue.trim()) {
-      setTodos([...todos, { text: inputValue, completed: false }]);
+      setTodos([...todos, { id: Date.now(), text: inputValue, completed: false }]);
       setInputValue('');
     }
   };
 
-  const handleToggleTodo = (index) => {
-    const newTodos = [...todos];
-    newTodos[index].completed = !newTodos[index].completed;
-    setTodos(newTodos);
+  const handleToggleTodo = (id) => {
+    setTodos(todos.map(todo =>
+      todo.id === id ? { ...todo, completed: !todo.completed } : todo
+    ));
   };
 
   return (
@@ -30,11 +30,11 @@ const TodoList = () => {
         <button onClick={handleAddTodo}>Add</button>
       </div>
       <ul>
-        {todos.map((todo, index) => (
+        {todos.map((todo) => (
           <li
-            key={index}
+            key={todo.id}
             className={todo.completed ? 'completed' : ''}
-            onClick={() => handleToggleTodo(index)}
+            onClick={() => handleToggleTodo(todo.id)}
           >
             {todo.text}
           </li>
