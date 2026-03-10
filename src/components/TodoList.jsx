@@ -1,6 +1,6 @@
-import React, { useState, memo } from 'react';
+import React, { useState } from 'react';
 
-const TodoList = memo(() => {
+const TodoList = () => {
   const [todos, setTodos] = useState([]);
   const [inputValue, setInputValue] = useState('');
 
@@ -42,6 +42,6 @@ const TodoList = memo(() => {
       </ul>
     </div>
   );
-});
+};
 
 export default TodoList;
