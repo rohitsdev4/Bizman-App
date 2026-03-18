@@ -6,15 +6,15 @@ const HabitTracker = () => {
 
   const handleAddHabit = () => {
     if (inputValue.trim()) {
-      setHabits([...habits, { text: inputValue, completedToday: false }]);
+      setHabits([...habits, { id: Date.now(), text: inputValue, completedToday: false }]);
       setInputValue('');
     }
   };
 
-  const handleToggleHabit = (index) => {
-    const newHabits = [...habits];
-    newHabits[index].completedToday = !newHabits[index].completedToday;
-    setHabits(newHabits);
+  const handleToggleHabit = (id) => {
+    setHabits(habits.map(habit =>
+      habit.id === id ? { ...habit, completedToday: !habit.completedToday } : habit
+    ));
   };
 
   return (
@@ -30,12 +30,12 @@ const HabitTracker = () => {
         <button onClick={handleAddHabit}>Add Habit</button>
       </div>
       <ul>
-        {habits.map((habit, index) => (
-          <li key={index}>
+        {habits.map((habit) => (
+          <li key={habit.id}>
             <span>{habit.text}</span>
             <button
               className={habit.completedToday ? 'completed' : ''}
-              onClick={() => handleToggleHabit(index)}
+              onClick={() => handleToggleHabit(habit.id)}
             >
               {habit.completedToday ? 'Completed' : 'Mark Complete'}
             </button>

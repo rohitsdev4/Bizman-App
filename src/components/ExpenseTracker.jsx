@@ -8,7 +8,7 @@ const ExpenseTracker = () => {
   const handleAddExpense = () => {
     const parsedAmount = parseFloat(amount);
     if (description.trim() && amount.trim() && !isNaN(parsedAmount)) {
-      setExpenses([...expenses, { description, amount: parsedAmount }]);
+      setExpenses([...expenses, { id: Date.now(), description, amount: parsedAmount }]);
       setDescription('');
       setAmount('');
     }
@@ -36,8 +36,8 @@ const ExpenseTracker = () => {
       </div>
       <h3>Total Expenses: ${totalExpenses.toFixed(2)}</h3>
       <ul>
-        {expenses.map((expense, index) => (
-          <li key={index}>
+        {expenses.map((expense) => (
+          <li key={expense.id}>
             <span>{expense.description}</span>
             <span>${expense.amount.toFixed(2)}</span>
           </li>
