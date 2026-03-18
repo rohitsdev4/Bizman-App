@@ -1,13 +1,20 @@
 import React, { useState } from 'react';
+import { validateCredentials } from '../utils/auth';
 
 const Login = ({ onLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Simulate API call
-    if (email === 'test@example.com' && password === 'password') {
+    setLoading(true);
+
+    // Attempt authentication via the security-hardened utility
+    const isValid = await validateCredentials(email, password);
+
+    setLoading(false);
+    if (isValid) {
       onLogin();
     } else {
       alert('Invalid credentials');
@@ -24,6 +31,7 @@ const Login = ({ onLogin }) => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
+          disabled={loading}
         />
         <input
           type="password"
@@ -31,8 +39,11 @@ const Login = ({ onLogin }) => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          disabled={loading}
         />
-        <button type="submit">Login</button>
+        <button type="submit" disabled={loading}>
+          {loading ? 'Logging in...' : 'Login'}
+        </button>
       </form>
     </div>
   );
