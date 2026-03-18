@@ -2,3 +2,10 @@ node_modules
 .vite/
 npm_output.log
 jules-scratch/
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
